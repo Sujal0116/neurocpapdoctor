@@ -1,347 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NeuroCPAP Advanced Dashboard</title>
+<meta charset="UTF-8">
+<title>NeuroCPAP Demo Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.3/chart.umd.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
-/* ========= GLOBAL ========= */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-    font-family:'Inter',sans-serif;
+    font-family:Inter,sans-serif;
     background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    min-height:100vh;
-    overflow-x:hidden;
+    min-height:100vh;color:#222
 }
+.login-container,.dashboard{min-height:100vh}
+.dashboard{display:none}
 
-/* ========= BACKGROUND ========= */
-.bg-animation{position:fixed;inset:0;z-index:0;opacity:.2}
-.bubble{
-    position:absolute;
-    bottom:-100px;
-    width:40px;height:40px;
-    background:rgba(255,255,255,.2);
-    border-radius:50%;
-    animation:rise 15s linear infinite;
-}
-@keyframes rise{
-    to{bottom:120%;transform:translateX(120px)}
-}
-
-/* ========= LOGIN ========= */
-.login-container{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:100vh;
-    z-index:1;
-    position:relative;
-}
 .login-box{
     background:white;
-    padding:45px;
-    border-radius:25px;
-    width:100%;
     max-width:460px;
-    box-shadow:0 40px 90px rgba(0,0,0,.4);
+    margin:auto;
+    margin-top:12vh;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 40px 80px rgba(0,0,0,.4)
 }
 .logo{
-    width:120px;height:120px;
+    width:110px;height:110px;
     margin:auto;
     border-radius:25px;
     background:linear-gradient(135deg,#667eea,#764ba2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:3.5em;
-    margin-bottom:25px;
-}
-.login-header{text-align:center}
-.login-header h1{
-    font-size:2.6em;
-    font-weight:900;
-    background:linear-gradient(135deg,#667eea,#764ba2);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-.login-header p{color:#555;margin:10px 0}
-.demo-badge{
-    display:inline-block;
-    background:linear-gradient(135deg,#667eea,#764ba2);
-    color:#fff;
-    padding:10px 24px;
-    border-radius:30px;
-    font-weight:700;
-}
-.form-group{margin:25px 0}
-.form-group label{font-weight:600}
-.form-group input{
-    width:100%;
-    padding:15px;
-    margin-top:8px;
-    border-radius:15px;
-    border:2px solid #ddd;
+    display:flex;align-items:center;justify-content:center;
+    font-size:3.5em;margin-bottom:20px
 }
 .login-btn{
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:16px;
-    font-weight:700;
+    width:100%;padding:16px;border:none;
+    border-radius:14px;
     background:linear-gradient(135deg,#667eea,#764ba2);
-    color:white;
-    cursor:pointer;
+    color:white;font-weight:700;cursor:pointer
 }
-
-/* ========= DASHBOARD ========= */
-.dashboard{display:none}
-.dashboard.active{display:block}
+input{
+    width:100%;padding:14px;
+    margin:10px 0;border-radius:12px;
+    border:2px solid #ddd
+}
 
 .header{
-    background:white;
-    padding:25px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 10px 40px rgba(0,0,0,.15);
-}
-.header-logo{
-    width:55px;height:55px;
-    background:linear-gradient(135deg,#667eea,#764ba2);
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:2em;
+    background:white;padding:20px 35px;
+    display:flex;justify-content:space-between;
+    align-items:center
 }
 .logout-btn{
-    padding:12px 24px;
-    border:none;
-    border-radius:14px;
-    background:#ff6b6b;
-    color:white;
-    font-weight:600;
-    cursor:pointer;
+    background:#ff6b6b;color:white;
+    border:none;padding:12px 22px;
+    border-radius:14px;font-weight:600;
+    cursor:pointer
 }
+.main{padding:35px;max-width:1600px;margin:auto}
 
-.main-content{padding:40px;max-width:1600px;margin:auto}
-
-/* ========= TABS ========= */
 .tabs{
-    display:flex;
-    gap:15px;
-    background:white;
-    padding:15px;
-    border-radius:20px;
-    margin-bottom:30px;
+    display:flex;gap:12px;
+    background:white;padding:14px;
+    border-radius:20px;margin-bottom:30px
 }
 .tab{
-    padding:14px 28px;
-    border:none;
-    border-radius:14px;
-    background:none;
-    font-weight:600;
-    cursor:pointer;
+    padding:12px 26px;border:none;
+    border-radius:14px;font-weight:600;
+    cursor:pointer;background:none
 }
 .tab.active{
     background:linear-gradient(135deg,#667eea,#764ba2);
-    color:white;
+    color:white
 }
+.tab-content{display:none}
+.tab-content.active{display:block}
 
-/* ========= STATS ========= */
-.stats-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
+.card{
+    background:white;padding:30px;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1)
 }
-.stat-card{
-    background:white;
-    padding:30px;
-    border-radius:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-}
-.stat-title{color:#666;font-weight:600}
+.grid{display:grid;gap:25px}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+
 .stat-value{
-    font-size:3em;
-    font-weight:900;
+    font-size:3em;font-weight:900;
     background:linear-gradient(135deg,#667eea,#764ba2);
     -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    -webkit-text-fill-color:transparent
 }
+.patient-select,select{
+    width:100%;padding:14px;
+    border-radius:12px;border:2px solid #ddd
+}
+.range{
+    width:100%
+}
+.success{color:green;font-weight:700}
+.warning{color:red;font-weight:700}
 
-/* ========= PATIENTS ========= */
-.patients-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:25px;
-}
-.patient-card{
-    background:white;
-    padding:30px;
-    border-radius:25px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
-}
-.patient-card h3{font-weight:800}
-.patient-metrics{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    margin-top:20px;
-}
-.metric{text-align:center}
-.metric-value{font-size:1.6em;font-weight:800}
-
-/* ========= RESPONSIVE ========= */
-@media(max-width:768px){
-    .main-content{padding:20px}
-    .header{flex-direction:column;gap:15px}
-}
+canvas{background:white;border-radius:20px;padding:20px}
 </style>
 </head>
 
 <body>
 
-<div class="bg-animation" id="bgAnimation"></div>
-
 <!-- LOGIN -->
-<div class="login-container" id="loginPage">
+<div class="login-container" id="login">
     <div class="login-box">
         <div class="logo">🫁</div>
-        <div class="login-header">
-            <h1>NeuroCPAP</h1>
-            <p>Advanced Sleep Apnea Management</p>
-            <span class="demo-badge">DEMO MODE</span>
-        </div>
-
-        <form id="loginForm">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" value="demo@doctor.com" required>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" value="demo123" required>
-            </div>
-            <button class="login-btn">🚀 Access Dashboard</button>
-        </form>
+        <h2 style="text-align:center">NeuroCPAP</h2>
+        <p style="text-align:center;margin-bottom:15px">Demo Doctor Login</p>
+        <input value="demo@doctor.com">
+        <input type="password" value="demo123">
+        <button class="login-btn" onclick="login()">Access Dashboard</button>
     </div>
 </div>
 
 <!-- DASHBOARD -->
 <div class="dashboard" id="dashboard">
-    <div class="header">
-        <div style="display:flex;align-items:center;gap:15px">
-            <div class="header-logo">🫁</div>
-            <div>
-                <h2>NeuroCPAP Dashboard</h2>
-                <p>Real-time Monitoring</p>
-            </div>
+
+<div class="header">
+    <h2>NeuroCPAP Dashboard</h2>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<div class="main">
+
+<div class="tabs">
+    <button class="tab active" onclick="showTab(0)">📊 Overview</button>
+    <button class="tab" onclick="showTab(1)">📈 Analytics</button>
+    <button class="tab" onclick="showTab(2)">🎛 Pressure Control</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="tab-content active">
+    <div class="grid grid-4">
+        <div class="card">
+            <p>Total Patients</p>
+            <div class="stat-value">24</div>
         </div>
-        <button class="logout-btn" id="logoutBtn">Logout</button>
-    </div>
-
-    <div class="main-content">
-        <div class="tabs">
-            <button class="tab active" data-tab="0">📊 Overview</button>
-            <button class="tab" data-tab="1">👥 Patients</button>
+        <div class="card">
+            <p>Critical Patients</p>
+            <div class="stat-value">3</div>
         </div>
-
-        <!-- OVERVIEW -->
-        <div class="tab-content active" id="tab0">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-title">Total Patients</div>
-                    <div class="stat-value">24</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-title">Critical Cases</div>
-                    <div class="stat-value">3</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-title">Avg Apnea Events</div>
-                    <div class="stat-value">13.2</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-title">Active Devices</div>
-                    <div class="stat-value">21</div>
-                </div>
-            </div>
+        <div class="card">
+            <p>Avg AHI</p>
+            <div class="stat-value">13.2</div>
         </div>
-
-        <!-- PATIENTS -->
-        <div class="tab-content" id="tab1">
-            <div class="patients-grid">
-                <div class="patient-card">
-                    <h3>Patient A</h3>
-                    <p>ID: CP-001</p>
-                    <div class="patient-metrics">
-                        <div class="metric">
-                            <div class="metric-value">12</div>
-                            AHI
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">96%</div>
-                            SpO₂
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">8</div>
-                            cmH₂O
-                        </div>
-                    </div>
-                </div>
-
-                <div class="patient-card">
-                    <h3>Patient B</h3>
-                    <p>ID: CP-002</p>
-                    <div class="patient-metrics">
-                        <div class="metric"><div class="metric-value">18</div>AHI</div>
-                        <div class="metric"><div class="metric-value">92%</div>SpO₂</div>
-                        <div class="metric"><div class="metric-value">10</div>cmH₂O</div>
-                    </div>
-                </div>
-            </div>
+        <div class="card">
+            <p>Active Devices</p>
+            <div class="stat-value">21</div>
         </div>
-
     </div>
 </div>
 
+<!-- ANALYTICS -->
+<div class="tab-content">
+    <div class="card">
+        <h3>Patient Analytics</h3><br>
+
+        <select onchange="updateChart(this.value)">
+            <option value="days">Last 7 Days</option>
+            <option value="months">Last 6 Months</option>
+            <option value="years">Last 5 Years</option>
+        </select>
+
+        <canvas id="healthChart" height="120"></canvas>
+    </div>
+</div>
+
+<!-- PRESSURE CONTROL -->
+<div class="tab-content">
+    <div class="card">
+        <h3>Remote CPAP Pressure Control</h3><br>
+
+        <label>Select Patient</label>
+        <select id="patientSelect">
+            <option>Rajesh Kumar (CSA)</option>
+            <option>Priya Sharma (OSA)</option>
+            <option>Amit Patel (Mixed)</option>
+        </select><br><br>
+
+        <label>Set Pressure (cmH₂O)</label>
+        <input type="range" min="4" max="20" value="8" class="range"
+               oninput="pressureVal.innerText=this.value">
+        <p>Current: <b><span id="pressureVal">8</span> cmH₂O</b></p>
+
+        <button class="login-btn" onclick="applyPressure()">Send to Device</button>
+
+        <p id="pressureStatus"></p>
+    </div>
+</div>
+
+</div>
+</div>
+
 <script>
-/* BACKGROUND */
-const bg=document.getElementById("bgAnimation");
-for(let i=0;i<25;i++){
-    const b=document.createElement("div");
-    b.className="bubble";
-    b.style.left=Math.random()*100+"%";
-    b.style.width=b.style.height=20+Math.random()*60+"px";
-    b.style.animationDuration=10+Math.random()*15+"s";
-    bg.appendChild(b);
+let chart;
+
+function login(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("dashboard").style.display="block";
+    initChart();
+}
+function logout(){location.reload()}
+function showTab(i){
+    document.querySelectorAll(".tab").forEach((t,idx)=>t.classList.toggle("active",idx===i));
+    document.querySelectorAll(".tab-content").forEach((c,idx)=>c.classList.toggle("active",idx===i));
 }
 
-/* LOGIN */
-document.getElementById("loginForm").onsubmit=e=>{
-    e.preventDefault();
-    document.getElementById("loginPage").style.display="none";
-    document.getElementById("dashboard").classList.add("active");
-};
+function initChart(){
+    chart=new Chart(document.getElementById("healthChart"),{
+        type:"line",
+        data:{
+            labels:["1","2","3","4","5","6","7"],
+            datasets:[
+                {label:"SpO₂ %",data:[96,95,94,95,96,97,96],borderWidth:3},
+                {label:"AHI",data:[14,13,15,12,13,11,12],borderWidth:3}
+            ]
+        }
+    });
+}
 
-/* LOGOUT */
-document.getElementById("logoutBtn").onclick=()=>{
-    location.reload();
-};
+function updateChart(type){
+    if(type==="days"){
+        chart.data.labels=["1","2","3","4","5","6","7"];
+        chart.data.datasets[0].data=[96,95,94,95,96,97,96];
+        chart.data.datasets[1].data=[14,13,15,12,13,11,12];
+    }
+    if(type==="months"){
+        chart.data.labels=["Jan","Feb","Mar","Apr","May","Jun"];
+        chart.data.datasets[0].data=[95,94,95,96,96,97];
+        chart.data.datasets[1].data=[16,15,14,13,12,11];
+    }
+    if(type==="years"){
+        chart.data.labels=["2021","2022","2023","2024","2025"];
+        chart.data.datasets[0].data=[92,93,94,95,96];
+        chart.data.datasets[1].data=[22,18,15,13,11];
+    }
+    chart.update();
+}
 
-/* TABS */
-document.querySelectorAll(".tab").forEach(tab=>{
-    tab.onclick=()=>{
-        document.querySelectorAll(".tab,.tab-content")
-            .forEach(el=>el.classList.remove("active"));
-        tab.classList.add("active");
-        document.getElementById("tab"+tab.dataset.tab)
-            .classList.add("active");
-    };
-});
+function applyPressure(){
+    const p=document.getElementById("pressureVal").innerText;
+    const status=document.getElementById("pressureStatus");
+    if(p>16){
+        status.innerHTML="⚠️ Safety Lock: Pressure too high";
+        status.className="warning";
+    }else{
+        status.innerHTML="✅ Pressure updated & sent to device";
+        status.className="success";
+    }
+}
 </script>
 
 </body>
