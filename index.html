@@ -510,6 +510,339 @@
             border-top: 2px solid #e9ecef;
         }
 
+        /* Pressure Control Styles */
+        .pressure-control-btn {
+            margin-top: 20px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+            width: 100%;
+        }
+
+        .pressure-control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 45px;
+            border-radius: 24px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .modal-header h2 {
+            color: #1e3c72;
+            font-size: 2em;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #5a6c7d;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            transform: rotate(90deg);
+        }
+
+        .patient-details {
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(233, 236, 239, 0.9));
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border-left: 5px solid #2a5298;
+        }
+
+        .patient-details h3 {
+            color: #1e3c72;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .patient-details p {
+            color: #5a6c7d;
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .pressure-settings {
+            margin: 30px 0;
+        }
+
+        .pressure-display {
+            text-align: center;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.3);
+        }
+
+        .pressure-display label {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .pressure-value {
+            font-size: 4em;
+            font-weight: 800;
+            line-height: 1;
+            margin: 15px 0;
+        }
+
+        .pressure-unit {
+            font-size: 1.5em;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .pressure-slider {
+            width: 100%;
+            height: 12px;
+            border-radius: 10px;
+            outline: none;
+            background: linear-gradient(to right, #2ecc71 0%, #f39c12 50%, #e74c3c 100%);
+            -webkit-appearance: none;
+            margin: 20px 0;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .pressure-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 4px solid #2a5298;
+        }
+
+        .pressure-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .pressure-slider::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 4px solid #2a5298;
+        }
+
+        .pressure-range {
+            display: flex;
+            justify-content: space-between;
+            color: #5a6c7d;
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-top: 10px;
+        }
+
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .preset-btn {
+            padding: 15px;
+            background: rgba(248, 249, 250, 0.9);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .preset-btn:hover {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .btn-apply {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.3);
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(46, 204, 113, 0.4);
+        }
+
+        .btn-cancel {
+            flex: 1;
+            padding: 18px;
+            background: rgba(149, 165, 166, 0.2);
+            color: #5a6c7d;
+            border: 2px solid #95a5a6;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancel:hover {
+            background: rgba(149, 165, 166, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .warning-message {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-left: 5px solid #f39c12;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 20px 0;
+            color: #856404;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .success-toast {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4);
+            z-index: 2000;
+            animation: slideInRight 0.5s ease;
+            display: none;
+            font-weight: 600;
+        }
+
+        .success-toast.active {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .current-pressure-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 700;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
         .metric {
             text-align: center;
         }
@@ -561,689 +894,3 @@
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 20px 24px;
-            text-align: left;
-        }
-
-        th {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            font-weight: 700;
-            font-size: 1em;
-            letter-spacing: 0.5px;
-        }
-
-        tbody tr:nth-child(even) {
-            background: rgba(248, 249, 250, 0.8);
-        }
-
-        tbody tr:hover {
-            background: rgba(233, 236, 239, 0.9);
-            transform: scale(1.01);
-        }
-
-        td {
-            color: #2c3e50;
-            font-size: 0.95em;
-            font-weight: 500;
-        }
-
-        .severity-severe {
-            color: #e74c3c !important;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.9em;
-            padding: 4px 12px;
-            background: rgba(231, 76, 60, 0.1);
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        .severity-moderate {
-            color: #f39c12 !important;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.9em;
-            padding: 4px 12px;
-            background: rgba(243, 156, 18, 0.1);
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        .severity-mild {
-            color: #2ecc71 !important;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.9em;
-            padding: 4px 12px;
-            background: rgba(46, 204, 113, 0.1);
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        .report-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 45px;
-            border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .report-section h2 {
-            color: #1e3c72;
-            font-size: 2.2em;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-
-        .report-date {
-            color: #5a6c7d;
-            font-size: 1.1em;
-            margin-bottom: 35px;
-            font-weight: 500;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 28px;
-            margin: 35px 0;
-        }
-
-        .summary-item {
-            padding: 35px;
-            background: linear-gradient(135deg, rgba(248, 249, 250, 0.9), rgba(233, 236, 239, 0.9));
-            border-radius: 18px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border-top: 4px solid #2a5298;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .summary-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #2a5298, transparent);
-        }
-
-        .summary-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .summary-value {
-            font-size: 3em;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-            line-height: 1;
-        }
-
-        .summary-label {
-            color: #5a6c7d;
-            font-weight: 600;
-            font-size: 1.1em;
-            letter-spacing: 0.3px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-                padding: 20px;
-            }
-
-            .header-left {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .main-content {
-                padding: 25px 20px;
-            }
-
-            .stats-grid, .summary-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .charts-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .patients-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .patient-metrics {
-                grid-template-columns: 1fr;
-            }
-
-            .tabs {
-                flex-direction: column;
-            }
-
-            .logo {
-                width: 120px;
-                height: 120px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Background Animation -->
-    <div class="bg-animation" id="bgAnimation"></div>
-
-    <!-- Login Page -->
-    <div id="loginPage" class="login-container">
-        <div class="login-box">
-            <div class="logo-container">
-                <img src="android-launchericon-512-512.jpg" alt="NeuroCPAP Logo" class="logo" id="loginLogo">
-            </div>
-            
-            <div class="login-header">
-                <h1>NeuroCPAP</h1>
-                <p>Doctor Dashboard • Real-time Patient Monitoring</p>
-                <span class="demo-badge">DEMO MODE</span>
-            </div>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="username">Doctor Email</label>
-                    <input type="email" id="username" placeholder="demo@doctor.com" value="demo@doctor.com" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="demo123" value="demo123" required>
-                </div>
-                
-                <button type="submit" class="login-btn">🚀 Access Dashboard</button>
-            </form>
-            
-            <div class="demo-credentials">
-                <strong>👨‍⚕️ Demo Login:</strong><br>
-                📧 demo@doctor.com | 🔑 demo123
-            </div>
-        </div>
-    </div>
-
-    <!-- Dashboard -->
-    <div id="dashboard" class="dashboard">
-        <div class="header">
-            <div class="header-left">
-                <img src="android-launchericon-512-512.jpg" alt="NeuroCPAP" class="header-logo" id="headerLogo">
-                <div class="header-title">
-                    <h1>NeuroCPAP Dashboard</h1>
-                    <p>Real-time Sleep Apnea Monitoring • 24 Active Patients</p>
-                </div>
-            </div>
-            <button class="logout-btn" onclick="logout()">🚪 Logout</button>
-        </div>
-
-        <div class="main-content">
-            <!-- Critical Alert -->
-            <div class="alert-banner">
-                <span class="alert-icon">🚨</span>
-                <div>
-                    <strong>CRITICAL ALERT:</strong> Patient <strong>Rajesh Kumar (NCPAP-001)</strong><br>
-                    SpO2 dropped to <strong>86%</strong> at <strong>06:45 AM</strong> • Central Apnea Detected
-                </div>
-            </div>
-
-            <!-- Navigation Tabs -->
-            <div class="tabs">
-                <button class="tab active" onclick="switchTab(0)">📊 Overview</button>
-                <button class="tab" onclick="switchTab(1)">👥 Patients</button>
-                <button class="tab" onclick="switchTab(2)">📈 Analytics</button>
-                <button class="tab" onclick="switchTab(3)">📋 Reports</button>
-            </div>
-
-            <!-- Tab 1: Overview -->
-            <div id="tab0" class="tab-content active">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-title">Total Patients</div>
-                        <div class="stat-value">24</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-title">Critical Cases</div>
-                        <div class="stat-value">3</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-title">Avg Apnea/Night</div>
-                        <div class="stat-value">13.2</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-title">Active Devices</div>
-                        <div class="stat-value">21</div>
-                    </div>
-                </div>
-
-                <h2 class="section-title">Recent Patient Activity</h2>
-                <div class="patients-grid" id="patientsOverview"></div>
-            </div>
-
-            <!-- Tab 2: All Patients -->
-            <div id="tab1" class="tab-content">
-                <h2 class="section-title">All Patients (24 Active)</h2>
-                <div class="patients-grid" id="allPatients"></div>
-            </div>
-
-            <!-- Tab 3: Analytics -->
-            <div id="tab2" class="tab-content">
-                <div class="charts-grid">
-                    <div class="chart-card">
-                        <div class="chart-title">SpO2 Trends (Last 24 Hours)</div>
-                        <canvas id="spo2Chart"></canvas>
-                    </div>
-                    <div class="chart-card">
-                        <div class="chart-title">Heart Rate Monitor (Last 24 Hours)</div>
-                        <canvas id="heartRateChart"></canvas>
-                    </div>
-                </div>
-
-                <h2 class="section-title">Recent Apnea Events</h2>
-                <div class="table-container">
-                    <table id="eventsTable"></table>
-                </div>
-            </div>
-
-            <!-- Tab 4: Reports -->
-            <div id="tab3" class="tab-content">
-                <div class="report-section">
-                    <h2>Weekly Summary Report</h2>
-                    <p class="report-date">December 25 - December 31, 2025</p>
-
-                    <div class="summary-grid">
-                        <div class="summary-item">
-                            <div class="summary-value">168</div>
-                            <div class="summary-label">Total Sleep Hours</div>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-value">342</div>
-                            <div class="summary-label">Apnea Events</div>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-value">92%</div>
-                            <div class="summary-label">Avg SpO2</div>
-                        </div>
-                        <div class="summary-item">
-                            <div class="summary-value">89</div>
-                            <div class="summary-label">Auto Interventions</div>
-                        </div>
-                    </div>
-
-                    <div class="chart-card" style="margin-top: 40px;">
-                        <div class="chart-title">Patient Severity Distribution</div>
-                        <canvas id="patientBreakdownChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Sample Data
-        const patients = [
-            { name: 'Rajesh Kumar', age: 45, gender: 'Male', deviceId: 'NCPAP-001', status: 'critical', apneaEvents: 23, avgSpo2: 89, avgHR: 68 },
-            { name: 'Priya Sharma', age: 38, gender: 'Female', deviceId: 'NCPAP-002', status: 'warning', apneaEvents: 12, avgSpo2: 92, avgHR: 72 },
-            { name: 'Amit Patel', age: 52, gender: 'Male', deviceId: 'NCPAP-003', status: 'normal', apneaEvents: 5, avgSpo2: 96, avgHR: 70 },
-            { name: 'Sunita Desai', age: 41, gender: 'Female', deviceId: 'NCPAP-004', status: 'warning', apneaEvents: 15, avgSpo2: 91, avgHR: 74 },
-            { name: 'Vikram Singh', age: 49, gender: 'Male', deviceId: 'NCPAP-005', status: 'critical', apneaEvents: 28, avgSpo2: 87, avgHR: 76 },
-            { name: 'Neha Gupta', age: 36, gender: 'Female', deviceId: 'NCPAP-006', status: 'normal', apneaEvents: 8, avgSpo2: 95, avgHR: 69 }
-        ];
-
-        const events = [
-            { time: '06:45 AM', patient: 'Rajesh Kumar', duration: 22, spo2Drop: 9, type: 'Central', severity: 'severe', action: 'Motor activated' },
-            { time: '05:30 AM', patient: 'Priya Sharma', duration: 15, spo2Drop: 5, type: 'Central', severity: 'moderate', action: 'Motor activated' },
-            { time: '04:15 AM', patient: 'Rajesh Kumar', duration: 18, spo2Drop: 7, type: 'Central', severity: 'severe', action: 'Motor activated' },
-            { time: '03:20 AM', patient: 'Amit Patel', duration: 8, spo2Drop: 3, type: 'Obstructive', severity: 'mild', action: 'Pressure adjusted' },
-            { time: '02:45 AM', patient: 'Vikram Singh', duration: 25, spo2Drop: 11, type: 'Central', severity: 'severe', action: 'Motor activated' },
-            { time: '01:30 AM', patient: 'Sunita Desai', duration: 12, spo2Drop: 4, type: 'Obstructive', severity: 'moderate', action: 'Pressure adjusted' }
-        ];
-
-        let spo2ChartInstance = null;
-        let heartRateChartInstance = null;
-        let breakdownChartInstance = null;
-
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', function() {
-            createBackgroundAnimation();
-            setupImages();
-        });
-
-        // Setup logo images with fallback
-        function setupImages() {
-            const logos = document.querySelectorAll('img[src="android-launchericon-512-512.jpg"]');
-            logos.forEach(logo => {
-                logo.onerror = function() {
-                    this.src = 'https://i.imgur.com/X8Y3Z9k.png';
-                };
-            });
-        }
-
-        // Create background animation
-        function createBackgroundAnimation() {
-            const bg = document.getElementById('bgAnimation');
-            for (let i = 0; i < 15; i++) {
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                bubble.style.left = Math.random() * 100 + '%';
-                bubble.style.width = bubble.style.height = (25 + Math.random() * 50) + 'px';
-                bubble.style.animationDelay = Math.random() * 15 + 's';
-                bubble.style.animationDuration = (12 + Math.random() * 8) + 's';
-                bg.appendChild(bubble);
-            }
-        }
-
-        // Login handler
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-
-            if (user === 'demo@doctor.com' && pass === 'demo123') {
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('dashboard').classList.add('active');
-                initDashboard();
-            } else {
-                // Shake animation for wrong credentials
-                const loginBox = document.querySelector('.login-box');
-                loginBox.style.animation = 'shake 0.5s ease-in-out';
-                setTimeout(() => {
-                    loginBox.style.animation = '';
-                }, 500);
-                alert('❌ Invalid credentials! Use: demo@doctor.com / demo123');
-            }
-        });
-
-        // Add shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Logout function
-        function logout() {
-            document.getElementById('dashboard').classList.remove('active');
-            document.getElementById('loginPage').style.display = 'flex';
-            // Reset forms
-            document.getElementById('username').value = 'demo@doctor.com';
-            document.getElementById('password').value = 'demo123';
-        }
-
-        // Tab switching
-        function switchTab(index) {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
-            
-            tabs.forEach((tab, i) => {
-                tab.classList.toggle('active', i === index);
-            });
-            contents.forEach((content, i) => {
-                content.classList.toggle('active', i === index);
-            });
-        }
-
-        // Render patients
-        function renderPatients(containerId, limit = null) {
-            const container = document.getElementById(containerId);
-            let html = '';
-            const displayPatients = limit ? patients.slice(0, limit) : patients;
-            
-            displayPatients.forEach(p => {
-                html += `
-                    <div class="patient-card ${p.status}">
-                        <div class="patient-info">
-                            <h3>${p.name}</h3>
-                            <p>${p.age} yrs • ${p.gender} • <strong>${p.deviceId}</strong></p>
-                        </div>
-                        <div class="patient-metrics">
-                            <div class="metric">
-                                <div class="metric-label">Apnea Events</div>
-                                <div class="metric-value">${p.apneaEvents}</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-label">Avg SpO2</div>
-                                <div class="metric-value">${p.avgSpo2}%</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-label">Avg HR</div>
-                                <div class="metric-value">${p.avgHR} bpm</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        // Render events table
-        function renderEventsTable() {
-            const table = document.getElementById('eventsTable');
-            let html = `
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Patient</th>
-                        <th>Duration</th>
-                        <th>SpO2 Drop</th>
-                        <th>Type</th>
-                        <th>Severity</th>
-                        <th>Action Taken</th>
-                    </tr>
-                </thead>
-                <tbody>
-            `;
-            
-            events.forEach(e => {
-                html += `
-                    <tr>
-                        <td><strong>${e.time}</strong></td>
-                        <td>${e.patient}</td>
-                        <td>${e.duration}s</td>
-                        <td><span style="color: #e74c3c; font-weight: 700;">-${e.spo2Drop}%</span></td>
-                        <td>${e.type}</td>
-                        <td class="severity-${e.severity}">${e.severity.toUpperCase()}</td>
-                        <td>${e.action}</td>
-                    </tr>
-                `;
-            });
-            html += '</tbody>';
-            table.innerHTML = html;
-        }
-
-        // Initialize dashboard
-        function initDashboard() {
-            renderPatients('patientsOverview', 6);
-            renderPatients('allPatients');
-            renderEventsTable();
-            createCharts();
-        }
-
-        // Create all charts
-        function createCharts() {
-            // Destroy existing charts
-            [spo2ChartInstance, heartRateChartInstance, breakdownChartInstance].forEach(chart => {
-                if (chart) chart.destroy();
-            });
-
-            // SpO2 Chart
-            const spo2Ctx = document.getElementById('spo2Chart').getContext('2d');
-            spo2ChartInstance = new Chart(spo2Ctx, {
-                type: 'line',
-                data: {
-                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
-                    datasets: [{
-                        label: 'SpO2 (%)',
-                        data: [95, 94, 92, 88, 86, 91, 94],
-                        borderColor: '#2a5298',
-                        backgroundColor: 'rgba(42, 82, 152, 0.15)',
-                        tension: 0.4,
-                        fill: true,
-                        borderWidth: 4,
-                        pointBackgroundColor: '#1e3c72',
-                        pointBorderColor: '#ffffff',
-                        pointBorderWidth: 3,
-                        pointRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            labels: {
-                                font: { size: 14, weight: '600' },
-                                padding: 20
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            min: 80,
-                            max: 100,
-                            grid: {
-                                color: 'rgba(0,0,0,0.05)'
-                            },
-                            ticks: {
-                                font: { weight: '600' }
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
-                    },
-                    elements: {
-                        point: {
-                            hoverRadius: 10
-                        }
-                    }
-                }
-            });
-
-            // Heart Rate Chart
-            const hrCtx = document.getElementById('heartRateChart').getContext('2d');
-            heartRateChartInstance = new Chart(hrCtx, {
-                type: 'line',
-                data: {
-                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
-                    datasets: [{
-                        label: 'Heart Rate (bpm)',
-                        data: [72, 68, 70, 75, 78, 72, 71],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.15)',
-                        tension: 0.4,
-                        fill: true,
-                        borderWidth: 4,
-                        pointBackgroundColor: '#c0392b',
-                        pointBorderColor: '#ffffff',
-                        pointBorderWidth: 3,
-                        pointRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            labels: {
-                                font: { size: 14, weight: '600' },
-                                padding: 20
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            min: 60,
-                            max: 90,
-                            grid: {
-                                color: 'rgba(0,0,0,0.05)'
-                            },
-                            ticks: {
-                                font: { weight: '600' }
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Patient Breakdown Chart
-            const breakdownCtx = document.getElementById('patientBreakdownChart').getContext('2d');
-            breakdownChartInstance = new Chart(breakdownCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Severe', 'Moderate', 'Mild', 'Normal'],
-                    datasets: [{
-                        data: [3, 8, 9, 4],
-                        backgroundColor: [
-                            '#e74c3c',
-                            '#f39c12',
-                            '#2ecc71',
-                            '#3498db'
-                        ],
-                        borderWidth: 0,
-                        borderRadius: 10,
-                        hoverOffset: 10
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                font: { size: 14, weight: '600' },
-                                padding: 20,
-                                usePointStyle: true
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Set canvas heights for better appearance
-        document.querySelectorAll('canvas').forEach(canvas => {
-            canvas.style.height = '300px';
-        });
-    </script>
-</body>
-</html>
